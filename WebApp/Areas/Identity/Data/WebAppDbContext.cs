@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebApp.Areas.Identity.Data;
+using WebApp.Models;
 
 namespace WebApp.Areas.Identity.Data;
 
@@ -21,6 +22,12 @@ public class WebAppDbContext : IdentityDbContext<WebAppUser>
         // Add your customizations after calling base.OnModelCreating(builder);
         builder.ApplyConfiguration(new WebAppUserEntityConfiguration());
     }
+
+    public DbSet<WebApp.Models.Department> Department { get; set; } = default!;
+
+    public DbSet<WebApp.Models.Staff> Staff { get; set; } = default!;
+
+    public DbSet<WebApp.Models.Subject> Subject { get; set; } = default!;
     
 }
 
