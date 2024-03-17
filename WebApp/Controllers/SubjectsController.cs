@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
-namespace WebApp.Views
+namespace WebApp.Controllers
 {
     public class SubjectsController : Controller
     {
@@ -22,9 +22,9 @@ namespace WebApp.Views
         // GET: Subjects
         public async Task<IActionResult> Index()
         {
-              return _context.Subject != null ? 
-                          View(await _context.Subject.ToListAsync()) :
-                          Problem("Entity set 'WebAppDbContext.Subject'  is null.");
+            return _context.Subject != null ?
+                        View(await _context.Subject.ToListAsync()) :
+                        Problem("Entity set 'WebAppDbContext.Subject'  is null.");
         }
 
         // GET: Subjects/Details/5
@@ -150,14 +150,14 @@ namespace WebApp.Views
             {
                 _context.Subject.Remove(subject);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SubjectExists(int id)
         {
-          return (_context.Subject?.Any(e => e.SubjectID == id)).GetValueOrDefault();
+            return (_context.Subject?.Any(e => e.SubjectID == id)).GetValueOrDefault();
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
-namespace WebApp.Views
+namespace WebApp.Controllers
 {
     public class StaffsController : Controller
     {
@@ -22,9 +22,9 @@ namespace WebApp.Views
         // GET: Staffs
         public async Task<IActionResult> Index()
         {
-              return _context.Staff != null ? 
-                          View(await _context.Staff.ToListAsync()) :
-                          Problem("Entity set 'WebAppDbContext.Staff'  is null.");
+            return _context.Staff != null ?
+                        View(await _context.Staff.ToListAsync()) :
+                        Problem("Entity set 'WebAppDbContext.Staff'  is null.");
         }
 
         // GET: Staffs/Details/5
@@ -150,14 +150,14 @@ namespace WebApp.Views
             {
                 _context.Staff.Remove(staff);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StaffExists(int id)
         {
-          return (_context.Staff?.Any(e => e.StaffID == id)).GetValueOrDefault();
+            return (_context.Staff?.Any(e => e.StaffID == id)).GetValueOrDefault();
         }
     }
 }
