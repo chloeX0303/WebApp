@@ -4,12 +4,46 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+            left-margin: 0px;
+        }
+
+</style>
+
+<ul style="list-style-type: none;
+        margin-top: -14px;
+        margin-left: -75px;
+        margin-right: -75px;
+        padding: 0;
+        line-height: 0px;
+        width: auto;
+        height: 30px;
+
+        overflow: hidden;
+        background-color: #333333;">
+    <li><a href="#">link 1</a></li>
+    <li><a href="#">link 2</a></li>
+    <li><a href="#">link 3</a></li>
+    <li><a href="#">link 4</a></li>
+</ul>
+
 <h1>Subject</h1>
 
-<p>
+<p hidden>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<!--<table class="table">
     <thead>
         <tr>
             <th></th>
@@ -27,3 +61,106 @@
 }
     </tbody>
 </table>
+-->
+<div class="flex-container">
+    <!--first row-->
+    
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex-container">
+    <!--second row-->
+    
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex-container">
+    <!--third row-->
+    
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card card-style">
+            <img class="card-img-top" src="/images/R.jpg" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
