@@ -22,17 +22,25 @@ body {
 }
 
 .card-style {
-    width: 400px;
+    width: 100%;
 }
-
 .flex-container {
     display: flex;
+   
 }
-
 .logo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-   
-    
+    margin-right: 10px;
 }
+@media screen and (max-width: 500px) {
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+a:hover {
+    color: #a6c12e;
+}
+
