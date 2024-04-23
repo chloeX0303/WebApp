@@ -53,16 +53,22 @@ a:hover {
     color: #a6c12e;
 }
 
+@media screen and (max-width: 700px) {
+    .fifth {
+        display: flex;
+        width: 67%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .fifth {
+        display: flex;
+        width: 100%;
+        
+    }
+}
 
-    @media screen and (max-width: 700px) {
-        .fifth {
-            display: flex;
-            width: 67%;
-        }
-
-        @media screen and (max-width: 500px) {
-            .fifth {
-                display: flex;
-                width: 100%;
-                ;
-            }
+.staff {
+    background-color: aqua;
+    padding-left: 40px;
+    padding-right: 40px;
+}
