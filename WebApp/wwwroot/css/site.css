@@ -86,3 +86,11 @@ a:hover {
        padding-right: 1px;
     }
 }
+
+.profile {
+    width: 300px;
+    height: 340px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 8px;
+}
