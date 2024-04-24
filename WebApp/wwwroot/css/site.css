@@ -23,7 +23,7 @@ body {
 
 .flex-container {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 10px;  
 }
 .logo {
     width: 50px;
@@ -68,7 +68,14 @@ a:hover {
 }
 
 .staff {
-    background-color: aqua;
     padding-left: 40px;
     padding-right: 40px;
+    display: flex
+}
+
+@media screen and (max-width: 800px) {
+    .staff {
+       padding-left: 1px;
+       padding-right: 1px;
+    }
 }
