@@ -94,3 +94,7 @@ a:hover {
     border-style: solid;
     border-width: 8px;
 }
+
+.go-back {
+    margin-bottom: 10px;
+}
