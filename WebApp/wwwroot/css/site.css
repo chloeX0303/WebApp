@@ -21,10 +21,10 @@ body {
   margin-bottom: 60px;
   background-color: #191919;
 }
-
-h1 {
+.info {
     color: white;
 }
+
 .flex-container {
     display: flex;
     margin-bottom: 10px;  
