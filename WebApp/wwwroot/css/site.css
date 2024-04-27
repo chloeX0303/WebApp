@@ -29,6 +29,12 @@ body {
     display: flex;
     margin-bottom: 10px;  
 }
+.h1 {
+    color: white;
+}
+.home {
+    color: black;
+}
 
 .logo {
     width: 50px;
