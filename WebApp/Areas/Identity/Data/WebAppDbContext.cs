@@ -28,6 +28,10 @@ public class WebAppDbContext : IdentityDbContext<WebAppUser>
     public DbSet<WebApp.Models.Staff> Staff { get; set; } = default!;
 
     public DbSet<WebApp.Models.Subject> Subject { get; set; } = default!;
+
+    public DbSet<WebApp.Models.Student> Student { get; set; } = default!;
+
+    public DbSet<WebApp.Models.Profile> Profile { get; set; } = default!;
     
 }
 
