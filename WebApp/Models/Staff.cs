@@ -18,7 +18,8 @@ namespace WebApp.Models
          ErrorMessage = "Numbers and symbols are not allowed.")]
         public string LastName { get; set;}
         [Required(ErrorMessage = "Please enter your email")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
+            ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter your phone number")]
         [Display(Name = "Phone Number")]
