@@ -20,16 +20,8 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index()
         {
-           /*sorting*/ ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            
-            switch (sortOrder)
-            {
-                case "name_desc":
-                   
-                    break;
-            }
 
             return _context.Staff != null ?
                         View(await _context.Staff.ToListAsync()) :
