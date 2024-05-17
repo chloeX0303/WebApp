@@ -10,6 +10,8 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter the subject name")]
         [Display(Name = "Subject Name")]
         [MaxLength(30)]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Numbers and symbols are not allowed.")]
         public string SubjectName { get; set; }
         public ICollection<Department> Departments { get; set; }
     }
