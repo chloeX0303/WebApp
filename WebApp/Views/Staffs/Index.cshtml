@@ -41,14 +41,16 @@
 
     <h1 class="info">Staff</h1>
 
-<p hidden> <!--to hide the create new-->
+<p> <!--to hide the create new-->
     <a asp-action="Create">Create New</a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
         </tr>
     </thead>
     <tbody>

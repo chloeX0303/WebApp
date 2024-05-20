@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
@@ -20,9 +21,22 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var staffs = from t in _context.Staff
+                         select t;
+                switch (sortOrder)
+            {
+                case "name_desc":
+                    staffs = staffs.OrderByDescending(t => t.LastName);
+                    break;
+                default:
+                    staffs = staffs.OrderBy(t => t.LastName);
+                    break;
+            }
+            return View(staffs.ToList());
+            //end
             return _context.Staff != null ?
                         View(await _context.Staff.ToListAsync()) :
                         Problem("Entity set 'WebAppDbContext.Staff'  is null.");
