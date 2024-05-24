@@ -13,6 +13,6 @@ namespace WebApp.Models
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
          ErrorMessage = "Numbers and symbols are not allowed.")]
         public string SubjectName { get; set; }
-        public ICollection<Department> Departments { get; set; }
+       
     }
 }
