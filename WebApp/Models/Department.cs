@@ -12,5 +12,6 @@ namespace WebApp.Models
          ErrorMessage = "Numbers and symbols are not allowed.")]
         public string DepartmentName { get; set; }
         public ICollection<Staff> Staffs { get; set;}
+        public ICollection<Subject> Subjects { get; set; }
     }
 }
