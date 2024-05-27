@@ -8,9 +8,9 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First Name")]
         [MaxLength(25)]
-       
+        
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Please enter your middle name")]
+        
         [Display(Name = "Middle Name")]
         [MaxLength(25)]
         public string MidName { get; set; }
