@@ -10,6 +10,10 @@ namespace WebApp.Models
         [MaxLength(25)]
        
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Please enter your middle name")]
+        [Display(Name = "Middle Name")]
+        [MaxLength(25)]
+        public string MidName { get; set; }
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
         [MaxLength(25)]
