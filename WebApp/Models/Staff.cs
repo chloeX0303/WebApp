@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
 {
@@ -8,14 +9,16 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First Name")]
         [MaxLength(25)]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-         ErrorMessage = "Numbers and symbols are not allowed.")]
+       
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Please enter your middle name")]
+        [Display(Name = "Middle Name")]
+        [MaxLength(25)]
+        public string MidName { get; set; }
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
         [MaxLength(25)]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-         ErrorMessage = "Numbers and symbols are not allowed.")]
+        
         public string LastName { get; set;}
         [Required(ErrorMessage = "Please enter your email")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
