@@ -73,12 +73,17 @@ namespace WebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
+            [StringLength(25, ErrorMessage = "The first name field should have a maximum of 25 characters")]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
-            [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
+            [StringLength(25, ErrorMessage = "The first name field should have a maximum of 25 characters")]
+            [Display(Name = "Middle Name")]
+            public string MidName { get; set; }
+
+            [Required]
+            [StringLength(25, ErrorMessage = "The first name field should have a maximum of 25 characters")]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
             /// <summary>
