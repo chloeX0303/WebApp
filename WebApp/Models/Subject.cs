@@ -10,7 +10,8 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter the subject name")]
         [Display(Name = "Subject Name")]
         [MaxLength(30)]
-       
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers")]
+        /*this should stop numbers*/
         public string SubjectName { get; set; }
        
     }
