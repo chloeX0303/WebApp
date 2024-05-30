@@ -3,10 +3,9 @@
     [DepartmentID] INT            NULL,
     [Email]        NVARCHAR (MAX) DEFAULT (N'') NOT NULL,
     [FirstName]    NVARCHAR (25)  NOT NULL,
-	[MidName]      NVARCHAR (25)  DEFAULT (N'') NULL,
     [LastName]     NVARCHAR (25)  NOT NULL,
     [PhoneNumber]  NVARCHAR (14)  NOT NULL,
-    
+    [MidName]      NVARCHAR (25)  DEFAULT (N'') NOT NULL,
     CONSTRAINT [PK_Staff] PRIMARY KEY CLUSTERED ([StaffID] ASC),
     CONSTRAINT [FK_Staff_Department_DepartmentID] FOREIGN KEY ([DepartmentID]) REFERENCES [dbo].[Department] ([DepartmentID])
 );
