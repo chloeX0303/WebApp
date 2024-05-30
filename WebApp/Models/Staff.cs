@@ -27,6 +27,7 @@ namespace WebApp.Models
 
         public string LastName { get; set;}
         [Required(ErrorMessage = "Please enter your email")]
+        [MaxLength(254)]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
             ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
