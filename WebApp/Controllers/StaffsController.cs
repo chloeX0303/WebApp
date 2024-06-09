@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
@@ -21,34 +20,11 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            var staffs = from t in _context.Staff
-                         select t;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                staffs = staffs.Where(t => t.LastName.Contains(searchString)
-                    ||t.FirstName.Contains(searchString));
-            }
-                switch (sortOrder)
-            {
-                case "name_desc":
-                    staffs = staffs.OrderByDescending(t => t.LastName);
-                    break;
-                default:
-                    staffs = staffs.OrderBy(t => t.LastName);
-                    break;
-            }
-            return View(staffs.ToList());
-            //end
             return _context.Staff != null ?
                         View(await _context.Staff.ToListAsync()) :
                         Problem("Entity set 'WebAppDbContext.Staff'  is null.");
-        }
-        public IActionResult profile()
-        {
-            return View();
         }
 
         // GET: Staffs/Details/5
@@ -80,9 +56,9 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StaffID")] Staff staff)
+        public async Task<IActionResult> Create([Bind("StaffID,FirstName,MidName,LastName,Email,PhoneNumber")] Staff staff)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(staff);
                 await _context.SaveChangesAsync();
@@ -112,7 +88,7 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StaffID")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("StaffID,FirstName,MidName,LastName,Email,PhoneNumber")] Staff staff)
         {
             if (id != staff.StaffID)
             {
