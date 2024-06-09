@@ -47,12 +47,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DepartmentID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DepartmentID">Details</a> |
