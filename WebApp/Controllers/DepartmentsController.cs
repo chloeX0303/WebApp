@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
-namespace WebApp.Views
+namespace WebApp.Controllers
 {
     public class DepartmentsController : Controller
     {
@@ -22,9 +22,9 @@ namespace WebApp.Views
         // GET: Departments
         public async Task<IActionResult> Index()
         {
-              return _context.Department != null ? 
-                          View(await _context.Department.ToListAsync()) :
-                          Problem("Entity set 'WebAppDbContext.Department'  is null.");
+            return _context.Department != null ?
+                        View(await _context.Department.ToListAsync()) :
+                        Problem("Entity set 'WebAppDbContext.Department'  is null.");
         }
 
         // GET: Departments/Details/5
@@ -56,9 +56,9 @@ namespace WebApp.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentID")] Department department)
+        public async Task<IActionResult> Create([Bind("DepartmentID,DepartmentName")] Department department)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(department);
                 await _context.SaveChangesAsync();
@@ -88,7 +88,7 @@ namespace WebApp.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DepartmentID")] Department department)
+        public async Task<IActionResult> Edit(int id, [Bind("DepartmentID,DepartmentName")] Department department)
         {
             if (id != department.DepartmentID)
             {
@@ -150,14 +150,14 @@ namespace WebApp.Views
             {
                 _context.Department.Remove(department);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DepartmentExists(int id)
         {
-          return (_context.Department?.Any(e => e.DepartmentID == id)).GetValueOrDefault();
+            return (_context.Department?.Any(e => e.DepartmentID == id)).GetValueOrDefault();
         }
     }
 }

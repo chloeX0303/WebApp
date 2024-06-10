@@ -56,9 +56,9 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubjectID")] Subject subject)
+        public async Task<IActionResult> Create([Bind("SubjectID,SubjectName")] Subject subject)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(subject);
                 await _context.SaveChangesAsync();
@@ -88,7 +88,7 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SubjectID")] Subject subject)
+        public async Task<IActionResult> Edit(int id, [Bind("SubjectID,SubjectName")] Subject subject)
         {
             if (id != subject.SubjectID)
             {
