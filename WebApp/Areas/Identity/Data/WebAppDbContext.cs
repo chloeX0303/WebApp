@@ -40,6 +40,7 @@ public class WebAppUserEntityConfiguration : IEntityTypeConfiguration<WebAppUser
     public void Configure(EntityTypeBuilder<WebAppUser> builder)
     {
         builder.Property(u => u.FirstName).HasMaxLength(255);
+        builder.Property(u => u.MidName).HasMaxLength(255);
         builder.Property(u => u.LastName).HasMaxLength(255);
     }
 }

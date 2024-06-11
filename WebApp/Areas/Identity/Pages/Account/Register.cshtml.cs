@@ -77,7 +77,7 @@ namespace WebApp.Areas.Identity.Pages.Account
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
-            [Required]
+            
             [StringLength(25, ErrorMessage = "The first name field should have a maximum of 25 characters")]
             [Display(Name = "Middle Name")]
             public string MidName { get; set; }
@@ -92,6 +92,7 @@ namespace WebApp.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [EmailAddress]
+            [StringLength(50, ErrorMessage = "The first name field should have a maximum of 50 characters")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
