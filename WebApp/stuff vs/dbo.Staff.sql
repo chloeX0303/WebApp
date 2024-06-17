@@ -5,7 +5,7 @@
     [FirstName]    NVARCHAR (25)  NOT NULL,
     [LastName]     NVARCHAR (25)  NOT NULL,
     [PhoneNumber]  NVARCHAR (14)  NOT NULL,
-    [MidName]      NVARCHAR (25)  DEFAULT (N'') NOT NULL,
+    [MidName]      NVARCHAR (25)  DEFAULT (N'') NULL,
     CONSTRAINT [PK_Staff] PRIMARY KEY CLUSTERED ([StaffID] ASC),
     CONSTRAINT [FK_Staff_Department_DepartmentID] FOREIGN KEY ([DepartmentID]) REFERENCES [dbo].[Department] ([DepartmentID])
 );
