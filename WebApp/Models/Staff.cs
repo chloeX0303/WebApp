@@ -18,7 +18,7 @@ namespace WebApp.Models
         [MaxLength(25)]
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers")]
         /*this should stop numbers*/
-        public string? MidName { get; set; }
+        public string? MidName { get; set; } /*'?' should null the midname*/
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
         [MaxLength(25)]
@@ -35,7 +35,7 @@ namespace WebApp.Models
         [Display(Name = "Phone Number")]
         [MaxLength(14)]
         [Range(0, int.MaxValue, ErrorMessage = "Numbers only")]
-        [RegularExpression("^[0-9]+(-[0-9]+)+$", ErrorMessage = "Only 1 hyphen between numbers")]
+        /*[RegularExpression("^[0-9]+(-[0-9]+)+$", ErrorMessage = "Only 1 hyphen between numbers")]
         /*this should allow 1 hyphen between the number*/
         public string PhoneNumber { get; set; }
     }
