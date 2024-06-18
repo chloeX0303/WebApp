@@ -11,9 +11,6 @@ s
 </p>
 <table class="table">
     <thead>
-    <th>
-            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-    </th>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -22,7 +19,7 @@ s
                 @Html.DisplayNameFor(model => model.MidName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
