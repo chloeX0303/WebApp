@@ -20,12 +20,17 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
            
             var staffs = from t in _context.Staff
                            select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                staffs = staffs.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstName.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
