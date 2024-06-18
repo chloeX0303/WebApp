@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Staff";
 }
-
+s
 <h1 class=" info">Staff List</h1>
 
 <p>
@@ -11,6 +11,9 @@
 </p>
 <table class="table">
     <thead>
+    <th>
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+    </th>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)

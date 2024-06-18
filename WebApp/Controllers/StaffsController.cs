@@ -20,8 +20,24 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+           
+            var staffs = from t in _context.Staff
+                           select t;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    staffs = staffs.OrderByDescending(t => t.LastName);
+                    break;
+              
+                default:
+                    staffs = staffs.OrderBy(s => s.LastName);
+                    break;
+            }
+            return View(staffs.ToList());
+
             return _context.Staff != null ?
                         View(await _context.Staff.ToListAsync()) :
                         Problem("Entity set 'WebAppDbContext.Staff'  is null.");
