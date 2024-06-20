@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
+using PagedList;
 
 namespace WebApp.Controllers
 {
@@ -20,10 +21,22 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-           
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var staffs = from t in _context.Staff
                            select t;
             if (!String.IsNullOrEmpty(searchString))
@@ -41,6 +54,10 @@ namespace WebApp.Controllers
                     staffs = staffs.OrderBy(s => s.LastName);
                     break;
             }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(staffs.ToPagedList(pageNumber, pageSize));
+
             return View(staffs.ToList());
 
             return _context.Staff != null ?
