@@ -1,6 +1,6 @@
-﻿@model IEnumerable<WebApp.Models.Staff>
-
-@{
+﻿@{
+@model PagedList.IPagedList<WebApp.Models.Staff>
+@using PagedList.Mvc;
     ViewData["Title"] = "Staff";
 }
 s
@@ -9,10 +9,10 @@ s
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Student", FormMethod.Get))
 {
     <p class="info">
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -26,7 +26,7 @@ s
                 @Html.DisplayNameFor(model => model.MidName)
             </th>
             <th>
-                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -64,3 +64,8 @@ s
 }
     </tbody>
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
