@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 using PagedList;
+using Microsoft.CodeAnalysis.Options;
 
 namespace WebApp.Controllers
 {
@@ -21,21 +22,18 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public async Task<IActionResult> Index(string sortOrder,string currentFilter, string searchString, int? pageNumber)
         {
-            ViewBag.CurrentSort = sortOrder;
+            ViewData["CurrentSort"] = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-
             if (searchString != null)
             {
-                page = 1;
+                pageNumber = 1;
             }
             else
             {
                 searchString = currentFilter;
             }
-
-            ViewBag.CurrentFilter = searchString;
 
             var staffs = from t in _context.Staff
                            select t;
@@ -54,10 +52,9 @@ namespace WebApp.Controllers
                     staffs = staffs.OrderBy(s => s.LastName);
                     break;
             }
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(staffs.ToPagedList(pageNumber, pageSize));
 
+            int pageSize = 2;
+            return View(await PaginatedList<Staff>.CreateAsync(staffs.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(staffs.ToList());
 
             return _context.Staff != null ?
