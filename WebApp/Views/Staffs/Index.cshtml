@@ -4,7 +4,7 @@
 
     ViewData["Title"] = "Staff";
 }
-s
+
 <h1 class=" info">Staff List</h1>
 
 <p>
@@ -17,7 +17,7 @@ s
         <input type="submit" value="Search" />
     </p>
 }
-<table class="table">
+@* <table class="table">
     <thead>
         <tr>
             <th>
@@ -35,12 +35,15 @@ s
             <th>
                 @Html.DisplayNameFor(model => model.First().PhoneNumber)
             </th>
+            <th>
+               ahhhhhhh
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody> *@
 @foreach (var item in Model) {
-        <tr>
+        @* <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
@@ -56,15 +59,27 @@ s
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
+                <td>
+                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="250px" height="250px"/>
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StaffID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.StaffID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.StaffID">Delete</a>
             </td>
-        </tr>
+        </tr> *@
+
+        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+            <img class="card-img-top" src="@("~/images/" + item.ImageName)" asp-append-version="true" alt="Card image cap">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName) </h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
 }
-    </tbody>
-</table>
+@*     </tbody>
+</table> *@
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";

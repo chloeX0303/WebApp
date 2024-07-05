@@ -15,10 +15,12 @@ namespace WebApp.Controllers
     public class StaffsController : Controller
     {
         private readonly WebAppDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public StaffsController(WebAppDbContext context)
+       public StaffsController(WebAppDbContext context,IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Staffs
@@ -91,13 +93,24 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StaffID,FirstName,MidName,LastName,Email,PhoneNumber")] Staff staff)
+        public async Task<IActionResult> Create([Bind("StaffID,FirstName,MidName,LastName,Email,PhoneNumber,ImageFile")] Staff staff)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(staff.ImageFile.FileName);
+                string extension = Path.GetExtension(staff.ImageFile.FileName);
+                staff.ImageName=fileName = fileName + DateTime.Now.ToString("yymmssffff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images", fileName);
+                using (var fileStream = new FileStream(path,FileMode.Create))
+                {
+                    await staff.ImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(staff);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index
+                    ));
             }
             return View(staff);
         }
