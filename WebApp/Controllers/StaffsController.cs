@@ -55,7 +55,7 @@ namespace WebApp.Controllers
                     break;
             }
 
-            int pageSize = 2;
+            int pageSize = 4;
             return View(await PaginatedList<Staff>.CreateAsync(staffs.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(staffs.ToList());
 

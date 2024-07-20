@@ -112,3 +112,7 @@ a:hover {
 .table {
     color:white;
 }
+card{
+    display: flex;
+    flex-wrap: wrap;
+}

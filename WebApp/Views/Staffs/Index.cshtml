@@ -17,9 +17,9 @@
         <input type="submit" value="Search" />
     </p>
 }
-@* <table class="table">
+ <table class="table">
     <thead>
-        <tr>
+         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.First().FirstName)
             </th>
@@ -39,11 +39,11 @@
                ahhhhhhh
             </th>
             <th></th>
-        </tr>
+        </tr> 
     </thead>
-    <tbody> *@
+    <tbody> 
 @foreach (var item in Model) {
-        @* <tr>
+           <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
@@ -66,20 +66,35 @@
                 <a asp-action="Edit" asp-route-id="@item.StaffID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.StaffID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.StaffID">Delete</a>
-            </td>
-        </tr> *@
-
-        <div class="card" style="width: 18rem;">
-  <div class="card-body">
-            <img class="card-img-top" src="@("~/images/" + item.ImageName)" asp-append-version="true" alt="Card image cap">
-            <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName) </h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+            </td> 
+        </tr> 
+        
+       @*  <div class="flex-container">         -trying to do cards-
+            <div class="col-sm-3">
+                <div class="card staff"> 
+                    
+                        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
+                <div class="card-body">
+                            <h5 class="card-title">
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(modelItem => item.MidName)
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </h5>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                    </div>
+              
+                    
+             </div>
+                </div>
+                </div> *@
+ 
+                
+           
 }
-@*     </tbody>
-</table> *@
+    </tbody>
+</table> 
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
