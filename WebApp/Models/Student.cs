@@ -16,7 +16,7 @@ namespace WebApp.Models
         [MaxLength(25)]
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this should stop numbers and symbols*/
-        public string MidName { get; set; }
+        public string? MidName { get; set; }
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
         [MaxLength(25)]
