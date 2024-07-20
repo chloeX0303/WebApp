@@ -8,8 +8,8 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter the department name")]
         [Display(Name = "Department Name")]
         [MaxLength(30)]
-        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers")]
-        /*this should stop numbers*/
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
+        /*this should stop numbers and symbols*/
         public string DepartmentName { get; set; }
         public ICollection<Staff> Staffs { get; set;}
         public ICollection<Subject> Subjects { get; set; }
