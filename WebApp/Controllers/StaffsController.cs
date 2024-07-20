@@ -36,7 +36,7 @@ namespace WebApp.Controllers
             {
                 searchString = currentFilter;
             }
-
+            ViewData["CurrentFilter"] = searchString;
             var staffs = from t in _context.Staff
                            select t;
             if (!String.IsNullOrEmpty(searchString))
