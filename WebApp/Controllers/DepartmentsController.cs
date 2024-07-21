@@ -13,15 +13,49 @@ namespace WebApp.Controllers
     public class DepartmentsController : Controller
     {
         private readonly WebAppDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public DepartmentsController(WebAppDbContext context)
+        public DepartmentsController(WebAppDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+            var departments = from t in _context.Department
+                           select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                departments = departments.Where(s => s.DepartmentName.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    departments = departments.OrderByDescending(t => t.DepartmentName);
+                    break;
+
+                default:
+                    departments = departments.OrderBy(s => s.DepartmentName);
+                    break;
+            }
+
+            int pageSize = 4;
+            return View(await PaginatedList<Department>.CreateAsync(departments.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(departments.ToList());
             return _context.Department != null ?
                         View(await _context.Department.ToListAsync()) :
                         Problem("Entity set 'WebAppDbContext.Department'  is null.");
@@ -56,10 +90,20 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentID,DepartmentName")] Department department)
+        public async Task<IActionResult> Create([Bind("DepartmentID,DepartmentName,ImageFile")] Department department)
         {
             if (!ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(department.ImageFile.FileName);
+                string extension = Path.GetExtension(department.ImageFile.FileName);
+                department.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssffff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await department.ImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

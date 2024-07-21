@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 
@@ -13,15 +15,50 @@ namespace WebApp.Controllers
     public class SubjectsController : Controller
     {
         private readonly WebAppDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public SubjectsController(WebAppDbContext context)
+        public SubjectsController(WebAppDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Subjects
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+            var subjects = from t in _context.Subject
+                         select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                subjects = subjects.Where(s => s.SubjectName.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    subjects = subjects.OrderByDescending(t => t.SubjectName);
+                    break;
+
+                default:
+                    subjects = subjects.OrderBy(s => s.SubjectName);
+                    break;
+            }
+
+            int pageSize = 4;
+            return View(await PaginatedList<Subject>.CreateAsync(subjects.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(subjects.ToList());
+
             return _context.Subject != null ?
                         View(await _context.Subject.ToListAsync()) :
                         Problem("Entity set 'WebAppDbContext.Subject'  is null.");
@@ -56,10 +93,20 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubjectID,SubjectName")] Subject subject)
+        public async Task<IActionResult> Create([Bind("SubjectID,SubjectName,ImageFile")] Subject subject)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(subject.ImageFile.FileName);
+                string extension = Path.GetExtension(subject.ImageFile.FileName);
+                subject.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssffff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await subject.ImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(subject);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApp.Models.Subject>
+﻿@model PaginatedList<WebApp.Models.Subject>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,13 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@using (Html.BeginForm("Index", "Subjects", FormMethod.Get))
+{
+    <p class="info">
+        Search for subject: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+        <a asp-action="Index">Back to Full List</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SubjectName)
+                @Html.ActionLink("Subject Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <th></th>
+            <th>
+                Picture
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +34,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SubjectName)
             </td>
+             
+                 <td>
+                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/>
+                </td> 
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SubjectID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SubjectID">Details</a> |
@@ -33,3 +48,22 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default gree info @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default gree info @nextDisabled">
+    Next
+</a> 

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models
 {
@@ -13,5 +15,10 @@ namespace WebApp.Models
         public string DepartmentName { get; set; }
         public ICollection<Staff> Staffs { get; set;}
         public ICollection<Subject> Subjects { get; set; }
+
+        public string ImageName { get; set; }
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
     }
 }

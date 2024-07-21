@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models
 {
@@ -13,6 +14,10 @@ namespace WebApp.Models
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this should stop numbers and symbols*/
         public string SubjectName { get; set; }
-       
+        
+        public string ImageName { get; set; }
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile {  get; set; }
     }
 }
