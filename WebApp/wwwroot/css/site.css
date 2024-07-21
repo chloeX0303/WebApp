@@ -116,3 +116,6 @@ card{
     display: flex;
     flex-wrap: wrap;
 }
+.gree:hover {
+    color: #a6c12e;
+}
