@@ -69,7 +69,7 @@
                 <a asp-action="Delete" asp-route-id="@item.StaffID">Delete</a>
             </td> 
         </tr> 
-        
+        @* 
          <div class="flex-container">        
             <div class="col-sm-3">
                 <div class="card staff"> 
@@ -105,7 +105,7 @@
 
                     </div>
                 </div>
-                </div> 
+                </div>  *@
  
                 
            
@@ -117,8 +117,8 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-
-<a asp-action="Index"   <!--paging buttons-->
+<!--paging buttons-->
+<a asp-action="Index"   
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
