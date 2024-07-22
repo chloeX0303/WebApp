@@ -13,7 +13,7 @@
 @using (Html.BeginForm("Index", "Staffs", FormMethod.Get))
 {
     <p class="info">
-        Find by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Find by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <!--search box-->
         <input type="submit" value="Search" />
         <a asp-action="Index">Back to Full List</a>
     </p>
@@ -29,7 +29,7 @@
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>
+            </th>       <!--sorting last name-->
             <th>
                 @Html.DisplayNameFor(model => model.First().Email)
             </th>
@@ -61,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
                  <td>
-                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/>
+                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/> <!--upload image button-->
                 </td> 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StaffID">Edit</a> |
@@ -118,7 +118,7 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
+<a asp-action="Index"   <!--paging buttons-->
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
