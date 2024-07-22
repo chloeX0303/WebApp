@@ -70,7 +70,7 @@
             </td> 
         </tr> 
         
-       @*  <div class="flex-container">         -trying to do cards-
+         <div class="flex-container">        
             <div class="col-sm-3">
                 <div class="card staff"> 
                     
@@ -88,8 +88,24 @@
               
                     
              </div>
+                    <div class="card staff">
+
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.MidName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </h5>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
-                </div> *@
+                </div> 
  
                 
            

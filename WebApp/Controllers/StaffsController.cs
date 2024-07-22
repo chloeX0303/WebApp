@@ -28,7 +28,7 @@ namespace WebApp.Controllers
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            if (searchString != null)
+            if (searchString != null)   /*this is for paging*/
             {
                 pageNumber = 1;
             }
@@ -39,12 +39,12 @@ namespace WebApp.Controllers
             ViewData["CurrentFilter"] = searchString;
             var staffs = from t in _context.Staff
                            select t;
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString))    /*this is searching*/
             {
                 staffs = staffs.Where(s => s.LastName.Contains(searchString)
                                        || s.FirstName.Contains(searchString));
             }
-            switch (sortOrder)
+            switch (sortOrder) /*this is sorting the last name in descending order*/
             {
                 case "name_desc":
                     staffs = staffs.OrderByDescending(t => t.LastName);
@@ -55,7 +55,7 @@ namespace WebApp.Controllers
                     break;
             }
 
-            int pageSize = 4;
+            int pageSize = 4; /*4 will be the maximum number of staffs on 1 page*/
             return View(await PaginatedList<Staff>.CreateAsync(staffs.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(staffs.ToList());
 

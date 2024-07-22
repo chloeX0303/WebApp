@@ -41,8 +41,8 @@ namespace WebApp.Models
         public string PhoneNumber { get; set; }
         public string ImageName { get; set; }
 
-        [NotMapped]
-        [DisplayName("Upload File")]
+        [NotMapped] /*'ImageFile' wont have its own column*/
+        [DisplayName("Upload File")] /*'Upload File' */
         public IFormFile ImageFile { get; set; }
        
     }
