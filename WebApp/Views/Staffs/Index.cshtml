@@ -69,47 +69,26 @@
                 <a asp-action="Delete" asp-route-id="@item.StaffID">Delete</a>
             </td> 
         </tr> 
-        @* 
-         <div class="flex-container">        
-            <div class="col-sm-3">
-                <div class="card staff"> 
-                    
-                        <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
-                <div class="card-body">
-                            <h5 class="card-title">
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                                @Html.DisplayFor(modelItem => item.MidName)
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </h5>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-                    </div>
-              
-                    
-             </div>
-                    <div class="card staff">
-
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    @Html.DisplayFor(modelItem => item.FirstName)
-                                    @Html.DisplayFor(modelItem => item.MidName)
-                                    @Html.DisplayFor(modelItem => item.LastName)
-                                </h5>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                </div>  *@
- 
-                
            
 }
+            <!--cards= each card created for the staff it will be filled in rows (4 cards each row) and it repeats.-->
+    <div class="flex-container">
+            @foreach (var items in Model)
+            {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @Html.DisplayFor(modelItem => items.FirstName)
+                        @Html.DisplayFor(modelItem => items.MidName)
+                        @Html.DisplayFor(modelItem => items.LastName)
+                    </h5>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            }
+    </div>
+
     </tbody>
 </table> 
 
