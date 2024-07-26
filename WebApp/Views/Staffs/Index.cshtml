@@ -76,14 +76,14 @@
             @foreach (var items in Model)
             {
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/blank-profile-picture-973460_1280.png" alt="Card image cap">
+                    <img class="card-img-top" src="@("~/images/"+items.ImageName)" asp-append-version="true" width="75px" height="75px" alt="Card image cap" style="object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">
                         @Html.DisplayFor(modelItem => items.FirstName)
                         @Html.DisplayFor(modelItem => items.MidName)
                         @Html.DisplayFor(modelItem => items.LastName)
                     </h5>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="#" class="btn btn-primary">View</a>
                 </div>
             </div>
             }
