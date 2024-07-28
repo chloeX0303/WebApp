@@ -19,7 +19,8 @@ namespace WebApp.Models
         [MaxLength(25)]
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this should stop numbers and symbols*/
-        public string? MidName { get; set; } /*'?' should null the midname*/
+        public string? MidName { get; set; } 
+        /*'?' should null the midname*/
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
         [MaxLength(25)]
@@ -41,8 +42,10 @@ namespace WebApp.Models
         public string PhoneNumber { get; set; }
         public string ImageName { get; set; }
 
-        [NotMapped] /*'ImageFile' wont have its own column*/
-        [DisplayName("Upload File")] /*'Upload File' */
+        [NotMapped] 
+        /*'ImageFile' wont have its own column*/
+        [DisplayName("Upload File")] 
+        /*'Upload File' */
         public IFormFile ImageFile { get; set; }
        
     }
