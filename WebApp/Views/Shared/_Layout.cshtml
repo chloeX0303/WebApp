@@ -42,9 +42,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+
+                    Find by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <!--search box-->
+                    <input type="submit" value="Search" />
                     
-                    <input type="text" placeholder="Search..">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                   @*  <input type="text" placeholder="Search..">
+                    <button type="submit"><i class="fa fa-search"></i></button> *@
                     <div class="logreg">
                     <partial name="_LoginPartial" />
                     </div>
@@ -76,3 +79,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
