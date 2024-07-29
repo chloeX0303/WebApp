@@ -9,7 +9,9 @@ namespace WebApp.Models
         public int StaffID { get; set; }
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First Name")]
+        /*The display */
         [MaxLength(25)]
+        /*the length of the first name should be no more than 25 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this should stop numbers and symbols*/
 

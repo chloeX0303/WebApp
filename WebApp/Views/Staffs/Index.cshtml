@@ -13,7 +13,7 @@
 @using (Html.BeginForm("Index", "Staffs", FormMethod.Get))
 {
     <p class="info">
-        Find by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <!--search box-->
+        Search by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <!--search box-->
         <input type="submit" value="Search" />
         <a asp-action="Index">Back to Full List</a>
     </p>
