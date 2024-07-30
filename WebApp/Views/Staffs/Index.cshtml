@@ -13,8 +13,10 @@
 @using (Html.BeginForm("Index", "Staffs", FormMethod.Get))
 {
     <p class="info">
-        Search by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <!--search box-->
+        Search by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) 
+        <!--search box. this will make a box where the user can enter whatever they want to search-->
         <input type="submit" value="Search" />
+        <!--this will submit-->
         <a asp-action="Index">Back to Full List</a>
     </p>
 }
@@ -96,7 +98,8 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-<!--paging buttons-->
+<!--paging buttons, the previous and next buttons,
+if the previous or next page isnt available, that button will be disabled-->
 <a asp-action="Index"   
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"

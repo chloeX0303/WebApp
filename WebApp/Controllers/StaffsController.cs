@@ -28,7 +28,7 @@ namespace WebApp.Controllers
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-             /*this is for paging. */
+             /*this is for paging. if a search is done, the page will reset to the number 1*/
             if (searchString != null)   
                
             {
@@ -104,6 +104,7 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+                /*the uploaded images will be saved in the wwwroot- image folder*/
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(staff.ImageFile.FileName);
                 string extension = Path.GetExtension(staff.ImageFile.FileName);
