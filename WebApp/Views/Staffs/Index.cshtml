@@ -16,7 +16,7 @@
         Search by first or last name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) 
         <!--search box. this will make a box where the user can enter whatever they want to search-->
         <input type="submit" value="Search" />
-        <!--this will submit-->
+        <!--this will submit whatever the user is searching-->
         <a asp-action="Index">Back to Full List</a>
     </p>
 }
@@ -31,7 +31,8 @@
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>       <!--sorting last name-->
+            </th>      
+            <!--this will be the name of the column and the link to sort the last name in descending order-->
             <th>
                 @Html.DisplayNameFor(model => model.First().Email)
             </th>
@@ -98,7 +99,7 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-<!--paging buttons, the previous and next buttons,
+<!--paging buttons. The previous and next buttons,
 if the previous or next page isnt available, that button will be disabled-->
 <a asp-action="Index"   
    asp-route-sortOrder="@ViewData["CurrentSort"]"

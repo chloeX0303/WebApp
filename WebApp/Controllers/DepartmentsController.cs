@@ -26,6 +26,7 @@ namespace WebApp.Controllers
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            /*this is for paging. if a search is done, the page will reset to the number 1*/
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -38,21 +39,25 @@ namespace WebApp.Controllers
             var departments = from t in _context.Department
                            select t;
             if (!String.IsNullOrEmpty(searchString))
+                /*this is searching for the department name containing
+                 * whatever name the user enters */
             {
                 departments = departments.Where(s => s.DepartmentName.Contains(searchString));
 
             }
             switch (sortOrder)
+                /*this is sorting, the department name is sort in descending order*/
             {
                 case "name_desc":
                     departments = departments.OrderByDescending(t => t.DepartmentName);
                     break;
-
+                    /*the default sort order is te order where I havecreated the departments in and
+                     * it is not descending or ascending*/
                 default:
                     departments = departments.OrderBy(s => s.DepartmentName);
                     break;
             }
-
+            /*the maximum staff displayed on 1 page will be 4*/
             int pageSize = 4;
             return View(await PaginatedList<Department>.CreateAsync(departments.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(departments.ToList());
@@ -94,6 +99,7 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+                /*the uploaded images will be saved in the wwwroot- image folder*/
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(department.ImageFile.FileName);
                 string extension = Path.GetExtension(department.ImageFile.FileName);
