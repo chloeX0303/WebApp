@@ -1,20 +1,24 @@
 ﻿@model PaginatedList<WebApp.Models.Subject>
-
+<!--reference to the PaginatedList model created for paging-->
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1 class=" info">Subject List</h1>
-
+<!--this class="info" will change the text colour white because the background is black-->
 <p>
     <a asp-action="Create">Create New</a>
+    <!--this is the button goes to the create form-->
 </p>
 @using (Html.BeginForm("Index", "Subjects", FormMethod.Get))
 {
     <p class="info">
         Search for subject: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <!--search box. this will make a box where the user can enter whatever they want to search-->
         <input type="submit" value="Search" />
+        <!--this will submit whatever the user is searching-->
         <a asp-action="Index">Back to Full List</a>
+        <!--the text "Back to Full List" will be the link to reset the search-->
     </p>
 }
 <table class="table">
@@ -23,7 +27,7 @@
             <th>
                 @Html.ActionLink("Subject Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <!--this will be the name of the column and the link to sort the last name in descending order-->
+            <!--this will be the name of the column and the link to sort the subject name in descending order-->
             <th>
                 Picture
             </th>
@@ -40,7 +44,7 @@
                    <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/>
                 </td> 
                 <!--this will give the user the option to upload an image.
-                                        The image will appear 75px width and height, will be saved under ImageName in the department table-->
+                                        The image will appear 75px width and height, will be saved under ImageName in the subject table-->
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SubjectID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SubjectID">Details</a> |

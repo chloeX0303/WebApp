@@ -52,7 +52,7 @@ namespace WebApp.Controllers
                 case "name_desc":
                     departments = departments.OrderByDescending(t => t.DepartmentName);
                     break;
-                    /*the default sort order is te order where I havecreated the departments in and
+                    /*the default sort order is te order where I have created the departments in and
                      * it is not descending or ascending*/
                 default:
                     departments = departments.OrderBy(s => s.DepartmentName);
