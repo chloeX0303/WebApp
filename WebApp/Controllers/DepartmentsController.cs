@@ -36,6 +36,7 @@ namespace WebApp.Controllers
                 searchString = currentFilter;
             }
             ViewData["CurrentFilter"] = searchString;
+            /*select from the department table*/
             var departments = from t in _context.Department
                            select t;
             if (!String.IsNullOrEmpty(searchString))
@@ -57,7 +58,7 @@ namespace WebApp.Controllers
                     departments = departments.OrderBy(s => s.DepartmentName);
                     break;
             }
-            /*the maximum staff displayed on 1 page will be 4*/
+            /*the maximum department displayed on 1 page will be 4*/
             int pageSize = 4;
             return View(await PaginatedList<Department>.CreateAsync(departments.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(departments.ToList());

@@ -1,14 +1,15 @@
 ﻿ @model PaginatedList<WebApp.Models.Staff>
- 
+<!--reference to the PaginatedList model created for paging-->
 @{
 
     ViewData["Title"] = "Staff";
 }
 
 <h1 class=" info">Staff List</h1>
-
+<!--this class="info" will change the text colour white because the background is black-->
 <p>
     <a asp-action="Create">Create New</a>
+    <!--this is the button goes to the create form-->
 </p>
 @using (Html.BeginForm("Index", "Staffs", FormMethod.Get))
 {
@@ -18,6 +19,7 @@
         <input type="submit" value="Search" />
         <!--this will submit whatever the user is searching-->
         <a asp-action="Index">Back to Full List</a>
+        <!--the text "Back to Full List" will be the link to reset the search-->
     </p>
 }
  <table class="table">
@@ -64,8 +66,9 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
                  <td>
-                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/> <!--upload image button-->
-                </td> 
+                   <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px"/>
+                <!--this will give the user the option to upload an image.
+                                    The image will appear 75px width and height, will be saved under ImageName in the department table-->
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StaffID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.StaffID">Details</a> |
@@ -106,6 +109,10 @@ if the previous or next page isnt available, that button will be disabled-->
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default gree info @prevDisabled">
+    <!--the 'info'' class is there to change the text colour white.
+     I noticed how the btn btn-default class makes it so when the user hovers over a button,
+     the button colour gets darker which is too similar to the text colour.
+     I created the class 'gree' to chnage the text colour text when hover.-->
     Previous
 </a>
 <a asp-action="Index"

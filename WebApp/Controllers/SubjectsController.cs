@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using WebApp.Areas.Identity.Data;
 using WebApp.Models;
@@ -28,6 +29,7 @@ namespace WebApp.Controllers
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            /*this is for paging. if a search is done, the page will reset to the number 1*/
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -39,22 +41,28 @@ namespace WebApp.Controllers
             ViewData["CurrentFilter"] = searchString;
             var subjects = from t in _context.Subject
                          select t;
+            /*select from the subject table */
             if (!String.IsNullOrEmpty(searchString))
+            /*this is searching for the department name containing
+             * whatever name the user enters */
             {
                 subjects = subjects.Where(s => s.SubjectName.Contains(searchString));
 
             }
             switch (sortOrder)
+            /*this is sorting, the department name is sort in descending order*/
             {
                 case "name_desc":
                     subjects = subjects.OrderByDescending(t => t.SubjectName);
                     break;
 
+                /*the default sort order is te order where I havecreated the departments in and
+                 * it is not descending or ascending*/
                 default:
                     subjects = subjects.OrderBy(s => s.SubjectName);
                     break;
             }
-
+            /*the maximum department displayed on 1 page will be 4*/
             int pageSize = 4;
             return View(await PaginatedList<Subject>.CreateAsync(subjects.AsNoTracking(), pageNumber ?? 1, pageSize));
             return View(subjects.ToList());
@@ -97,6 +105,7 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+                /*the uploaded images will be saved in the wwwroot- image folder*/
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(subject.ImageFile.FileName);
                 string extension = Path.GetExtension(subject.ImageFile.FileName);

@@ -1,14 +1,15 @@
 ﻿@model PaginatedList<WebApp.Models.Department>
-
+    <!--reference to the PaginatedList model created for paging-->
 @{
     ViewData["Title"] = "Department";
 }
 
 <h1 class=" info">Department List</h1>
-<!--this class="info" will change the text colour white-->
+<!--this class="info" will change the text colour white because the background is black-->
 
 <p>
     <a asp-action="Create">Create New</a>
+    <!--this is the button goes to the create form-->
 </p>
 @using (Html.BeginForm("Index", "Departments", FormMethod.Get))
 {
@@ -42,7 +43,8 @@
                 <td>
                     <img src="@("~/images/"+item.ImageName)" asp-append-version="true" width="75px" height="75px" />
                 </td> 
-                <!--this will give the user the option to upload an image-->
+                <!--this will give the user the option to upload an image. 
+                                    The image will appear 75px width and height, will be saved under ImageName in the department table-->
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DepartmentID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DepartmentID">Details</a> |
@@ -63,6 +65,10 @@ if the previous or next page isnt available, that button will be disabled-->
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default gree info @prevDisabled">
+   <!--the 'info'' class is there to change the text colour white.
+    I noticed how the btn btn-default class makes it so when the user hovers over a button, 
+    the button colour gets darker which is too similar to the text colour.
+    I created the class 'gree' to chnage the text colour text when hover.-->
     Previous
 </a>
 <a asp-action="Index"

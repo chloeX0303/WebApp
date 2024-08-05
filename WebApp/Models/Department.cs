@@ -15,12 +15,12 @@ namespace WebApp.Models
         [MaxLength(30)]
         /*the department name will have the max length of 30 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
-        /*this should stop numbers and symbols*/
+        /*this regular expression should prevent the user from creating a last name contanting numbers and symbols*/
         public string DepartmentName { get; set; }
-        /*fix this---->*/
+        /*fix this. I dont think I did relationships properly---->*/
         public ICollection<Staff> Staffs { get; set;}
         public ICollection<Subject> Subjects { get; set; }
-        /*this the title where the image link will be under in the department table*/
+        /*ImageName will be the title where the image link will be under in the department table*/
         public string ImageName { get; set; }
         [NotMapped]
         /*'ImageFile' wont have its own column in the department table*/
