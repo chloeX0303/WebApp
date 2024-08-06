@@ -30,6 +30,7 @@ body {
     flex-direction: row;
     gap: 10px;
     margin-bottom: 10px;  
+    justify-content: center;
 }
 .h1,h2,h3,h4 {
     color: white;
@@ -120,4 +121,7 @@ card{
 }
 .gree:hover {
     color: #a6c12e;
+}
+.image-card {
+    height:100%;
 }
