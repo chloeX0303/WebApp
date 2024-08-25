@@ -52,6 +52,22 @@
             </td>
         </tr>
 }
+        <!--cards= each card created for the staff it will be filled in rows and it repeats.-->
+        <div class="flex-container">
+            @foreach (var items in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top image-card" src="@("~/images/"+items.ImageName)" asp-append-version="true" alt="Card image cap" style="object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @Html.DisplayFor(modelItem => items.DepartmentName)
+                            
+                        </h5>
+                        <a href="#" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            }
+        </div>
     </tbody>
 </table>
 @{
