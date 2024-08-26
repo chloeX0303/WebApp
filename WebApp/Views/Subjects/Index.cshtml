@@ -56,13 +56,16 @@
         <div class="flex-container">
             @foreach (var items in Model)
             {
+                <!--image-->
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top image-card" src="@("~/images/"+items.ImageName)" asp-append-version="true" alt="Card image cap" style="object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">
+                            <!--under the image will be the subject name-->
                             @Html.DisplayFor(modelItem => items.SubjectName)
                            
                         </h5>
+                        <!--this is a button-->
                         <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
