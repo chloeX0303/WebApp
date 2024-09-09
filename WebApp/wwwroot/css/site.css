@@ -21,7 +21,8 @@ body {
   margin-bottom: 60px;
   background-color: #191919;
 }
-.info {
+.info { 
+    /*this is mainly for those text on pages with darker backgrounds like black*/
     color: white;
 }
 
@@ -34,6 +35,7 @@ body {
 }
 .h1,h2,h3,h4 {
     color: white;
+    /*all the headings should have white font*/
 }
 .home {
     color: black;
@@ -120,8 +122,10 @@ card{
     flex-wrap: wrap;
 }
 .gree:hover {
+    /*this is the colour of the text will be a shade of green when hovered (used in the pagination)*/
     color: #a6c12e;
 }
 .image-card {
+    /*this is for making sure the cards are at its max height so (used in the staff/department/subject index pages */
     height:100%;
 }
