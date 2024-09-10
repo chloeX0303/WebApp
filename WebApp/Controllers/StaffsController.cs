@@ -9,6 +9,7 @@ using WebApp.Areas.Identity.Data;
 using WebApp.Models;
 using PagedList;
 using Microsoft.CodeAnalysis.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
@@ -91,6 +92,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Staffs/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();

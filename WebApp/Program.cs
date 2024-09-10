@@ -6,7 +6,9 @@ var connectionString = builder.Configuration.GetConnectionString("WebAppDbContex
 
 builder.Services.AddDbContext<WebAppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<WebAppDbContext>();
+builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<WebAppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
