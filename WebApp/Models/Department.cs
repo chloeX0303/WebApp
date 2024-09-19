@@ -12,8 +12,10 @@ namespace WebApp.Models
         /*the user is required to enter the department name*/
         [Display(Name = "Department Name")]
         /*the name "Department Name" will be displayed like this in the forms and tables in the app*/
-        [MaxLength(30)]
-        /*the department name will have the max length of 30 characters*/
+        [MaxLength(15, ErrorMessage ="the department name will have no more than 15 characters")]
+        /*the department name will have the max length of 15 characters*/
+        [MinLength(5, ErrorMessage ="the department name will at least 5 character")]
+        /*the department name should have the minimum length of 5 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this regular expression should prevent the user from creating a last name contanting numbers and symbols*/
         public string DepartmentName { get; set; }

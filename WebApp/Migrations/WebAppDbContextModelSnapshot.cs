@@ -195,7 +195,6 @@ namespace WebApp.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MidName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 

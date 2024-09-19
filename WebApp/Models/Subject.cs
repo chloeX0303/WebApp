@@ -12,8 +12,10 @@ namespace WebApp.Models
         /*the user is required to enter the subject name*/
         [Display(Name = "Subject Name")]
         /*the name "Subject Name" will be displayed like this in the forms and tables in the app*/
-        [MaxLength(30)]
-        /*the subject name will have the max length of 30 characters*/
+        [MaxLength(15)]
+        /*the subject name will have the max length of 15 characters*/
+        [MinLength(5, ErrorMessage ="the subject name should have at least 5 characters")]
+        /*the subject name should have the minimum length of 5 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
         /*this should stop numbers and symbols*/
         public string SubjectName { get; set; }

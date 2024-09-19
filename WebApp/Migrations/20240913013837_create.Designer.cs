@@ -12,8 +12,8 @@ using WebApp.Areas.Identity.Data;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(WebAppDbContext))]
-    [Migration("20240721055440_departmentimg")]
-    partial class departmentimg
+    [Migration("20240913013837_create")]
+    partial class create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,7 +198,6 @@ namespace WebApp.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MidName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
