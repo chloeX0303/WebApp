@@ -22,7 +22,14 @@
         <!--the text "Back to Full List" will be the link to reset the search-->
     </p>
 }
-<table class="table">
+<!--grab the order by feature into a link from the table and place it above the cards--> 
+<p class="info">
+    Order by
+    @Html.ActionLink("Department Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+</p>
+
+<!--to hide the table-->
+<table hidden class="table">
     <thead>
         <tr>
             <th>
@@ -64,7 +71,7 @@
                             @Html.DisplayFor(modelItem => items.DepartmentName)
                             
                         </h5>
-                        <a href="#" class="btn btn-primary">View</a>
+                        
                     </div>
                 </div>
             }

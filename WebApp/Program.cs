@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("WebAppDbContex
 
 builder.Services.AddDbContext<WebAppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<WebAppDbContext>();
 
@@ -35,54 +35,54 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = 
-        scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var roleManager = 
+//        scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    var roles = new[] { "Admin" };
+//    var roles = new[] { "Admin" };
 
-    foreach ( var role in roles)
-    {
-        if(!await roleManager.RoleExistsAsync(role))
-            await roleManager.CreateAsync(new IdentityRole(role));
-    }
-}
+//    foreach ( var role in roles)
+//    {
+//        if(!await roleManager.RoleExistsAsync(role))
+//            await roleManager.CreateAsync(new IdentityRole(role));
+//    }
+//}
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var roles = new[] { "Admin"};
+//using (var scope = app.Services.CreateScope())
+//{
+//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//    var roles = new[] { "Admin"};
 
-    foreach (var role in roles)
-    {
-        if (!await roleManager.RoleExistsAsync(role))
-            await roleManager.CreateAsync(new IdentityRole(role));
-    }
-}
-using (var scope = app.Services.CreateScope())
-{
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<WebAppUser>>();
+//    foreach (var role in roles)
+//    {
+//        if (!await roleManager.RoleExistsAsync(role))
+//            await roleManager.CreateAsync(new IdentityRole(role));
+//    }
+//}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<WebAppUser>>();
 
-    string FirstName = "Admin";
-    string LastName = "Ha";
-    string email = "admin22@gmail.com";
-    string password = "Password1!";
+//    string FirstName = "Admin";
+//    string LastName = "Ha";
+//    string email = "admin22@gmail.com";
+//    string password = "Password1!";
 
-    if (await userManager.FindByEmailAsync(email) == null)
-    {
-        var user = new WebAppUser();
-        user.Email = email;
-        user.FirstName = FirstName;
-        user.LastName = LastName;
+//    if (await userManager.FindByEmailAsync(email) == null)
+//    {
+//        var user = new WebAppUser();
+//        user.Email = email;
+//        user.FirstName = FirstName;
+//        user.LastName = LastName;
         
 
-        await userManager.CreateAsync(user, password);
+//        await userManager.CreateAsync(user, password);
 
-        await userManager.AddToRoleAsync(user, "Admin");
-    }
+//        await userManager.AddToRoleAsync(user, "Admin");
+//    }
 
-}
+//}
 
 app.MapRazorPages();
 

@@ -129,3 +129,14 @@ card{
     /*this is for making sure the cards are at its max height so (used in the staff/department/subject index pages */
     height:100%;
 }
+
+.side {
+    height: 620px;
+    width:100%;
+   
+}
+@media screen and (max-width: 1000px) {
+    .side {
+        height: 100%;
+    }
+}
