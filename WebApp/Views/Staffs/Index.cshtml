@@ -91,6 +91,9 @@
             <div class="card" style="width: 18rem;">
                     <img class="card-img-top image-card" src="@("~/images/"+items.ImageName)" asp-append-version="true" alt="Card image cap" style="object-fit: cover;">
                 <div class="card-body">
+
+                       
+
                     <!--the card title will have first, mid and last name in that order.
                         It wont display mid name if the staff doesnt have one.
                        This image will fit in the card
@@ -100,7 +103,29 @@
                         @Html.DisplayFor(modelItem => items.MidName)
                         @Html.DisplayFor(modelItem => items.LastName)
                     </h5>
-                  
+                       @*  <!-- Button trigger modal failed-->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            More
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
                 </div>
             </div>
             }
@@ -108,6 +133,10 @@
 
     </tbody>
 </table> 
+
+
+
+
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";

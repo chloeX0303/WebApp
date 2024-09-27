@@ -26,5 +26,6 @@ namespace WebApp.Models
         [DisplayName("Upload File")]
         /*'Upload File' will be displayed in the create/edit/detail form instead of ImageFile*/
         public IFormFile ImageFile {  get; set; }
+     
     }
 }
