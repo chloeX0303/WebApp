@@ -16,7 +16,7 @@ namespace WebApp.Models
         [MinLength(2, ErrorMessage= "the length of the first name should be at least 2 characters")]
         /* the length of the first name should be at least 2 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
-        /*this regular expression should prevent the user from creating a last name containing numbers and symbols*/
+        /*this regular expression should prevent the user from creating a first name containing numbers and symbols*/
         public string FirstName { get; set; }
 
         [Display(Name = "Middle Name")]
@@ -26,7 +26,7 @@ namespace WebApp.Models
         [MinLength(2, ErrorMessage = "the middle name should have at least 2 characters")]
         /*the middle name should have at least 2 characters*/
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "No numbers and symbols")]
-        /*this regular expression should prevent the user from creating a last name containing numbers and symbols*/
+        /*this regular expression should prevent the user from creating a middle name containing numbers and symbols*/
         public string? MidName { get; set; }
         /*'?' should null the midname*/
         [Required(ErrorMessage = "Please enter your last name")]
@@ -43,7 +43,7 @@ namespace WebApp.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please enter your email")]
         /*the user is required to enter the email*/
-        [MaxLength(25, ErrorMessage = "the email will have no more than 50 characters")]
+        [MaxLength(25, ErrorMessage = "the email will have no more than 25 characters")]
         /*the email will have no more than 25 characters*/
         [MinLength(20, ErrorMessage = "the email will have at least 20 characters")]
         /*the email will have at least 20 characters*/
