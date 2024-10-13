@@ -44,7 +44,7 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Please enter your email")]
         /*the user is required to enter the email*/
         [MaxLength(25, ErrorMessage = "the email will have no more than 50 characters")]
-        /*the email will have no more than 50 characters*/
+        /*the email will have no more than 25 characters*/
         [MinLength(20, ErrorMessage = "the email will have at least 20 characters")]
         /*the email will have at least 20 characters*/
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
